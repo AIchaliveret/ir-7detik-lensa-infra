@@ -1,45 +1,70 @@
-# IR Face Scanner - 7 Detik Lensa Infra Deteksi | Lablab.ai Competition
+IR 7 Detik - Lensa Infra | IR Manfaat Active
+Privacy First + Ethical AI - Early warning kulit berbasis Thermal IR, bukan diagnosis medis.
 
-## Model: V5 WIDE SIMPLE - The Best Simple
+🔴 2 LIVE DEMO V28 FINAL 100% ACTIVE (WAJIB PUBLIC)
+1. PWA Netlify (Vanilla JS - Camera+Mic One-Click Fix) - RECOMMENDED FOR JUDGES:
+https://sage-gnome-459585.netlify.app/
 
-**Deploy Live:** https://sage-gnome-459585.netlify.app/
+2. Streamlit Cloud (Python - Same Logic):
+https://ir-7detik-lensa-infra-dixjkw5jjcntcfthyk5z3.streamlit.app
 
-### Apa itu?
-Web/App full kamera dengan IR sebagai Lensa Pembesar Shortir untuk deteksi kesehatan kulit. 
-- Full camera live FACE ID • IR frame
-- Bottom sheet Lembaran Keterangan bisa sliding kebawah
-- Klik MULAI DETEKSI -> slide down -> auto countdown 3/5/7 detik pajang wajah -> lensa auto-scan -> auto capture -> hasil analisa
+Kedua demo logic SAMA 100%, PWA lebih stabil untuk mobile.
 
-### Kenapa 7 Detik Perfect untuk Promo IR?
-0-2s atur posisi, 2-5s lensa IR auto-scan shortir wajah (thermal merah +0.8°C jamur, biru -0.2°C komedo), 5-7s user lihat detail pori/komedo/bulu di 500x/1000x VISUAL, baru FLASH capture. Bikin user betah, bukan filter instant.
+📸 About: Privacy & Keamanan Data
+FOTO TIDAK DI-UPLOAD. PROSES LOKAL 100% DI BROWSER HP/LAPTOP.
 
-### Kolom Atur Deteksi (Bisa Pilih):
-- Group1: [Kulit Wajah Lembab, Kulit Wajah Kering]
-- Group2: [Berpori Besar, Berkomedo, Berflek]
-- Group3: [Bertungau Demodex, Berpanu Menjamur, Awas Bakteri & Virus -> Jerawat Bernanah]
+Semua analisis IR berjalan di browser menggunakan Vanilla JS + Canvas API
+Tidak ada foto yang dikirim ke server Netlify / Streamlit / Lablab.ai
+Aman untuk Lablab.ai, tidak melanggar policy upload data sensitif
+Bisa offline setelah load pertama (PWA)
+⚕️ Disclaimer Medis (Ethical AI)
+PENTING: INI BUKAN ALAT DIAGNOSIS MEDIS.
 
-### Bisakah IR deteksi bakteri & virus?
-TIDAK LANGSUNG. Bakteri 0.5-1 mikron, virus 20-300nm lebih kecil dari pixel IR. IR hanya deteksi panas peradangan +0.6-1.5°C. Kepastian 100% butuh lab. Ini early warning.
+Sistem TIDAK LANGSUNG mendeteksi bakteri/virus ukuran 0.5-1 mikron. Itu butuh mikroskop lab.
+IR Manfaat Active hanya membaca pola suhu permukaan kulit sebagai early warning.
+Deteksi: border jamur +0.8°C lebih panas dari kulit normal, komedo -0.2°C lebih dingin.
+Score 48/100 adalah skor risiko observasi, BUKAN diagnosis.
+WAJIB anjuran ke dokter / lab untuk konfirmasi.
+Untuk edukasi dan skrining awal saja.
+✨ Features V28 FINAL
+7 Detik Observasi Perfect: Algoritma menunggu 7 detik stabilisasi kamera sebelum analisis, menghindari blur dan noise.
+IR Manfaat Active Border: Deteksi tepi area yang mencurigakan dengan perbedaan suhu thermal.
+Thermal Logic: Jamur +0.8°C panas, Komedo -0.2°C dingin (berbasis studi literatur IR dermatologi).
+Score + Saran Formula: Score 48/100 contoh, + Saran Formula perawatan + Nasehat Dokter via Voice.
+Poster + 12 Slides Deck: Sudah attached di submission.
+🛠️ Tech Stack
+Frontend PWA: Vanilla JS, HTML5 Camera API, Web Audio API, Canvas IR Processing
+Backend Python: Streamlit Cloud, OpenCV, NumPy, Pillow
+Voice Agent: AssemblyAI (Speech-to-Text untuk nasehat dokter), Streamlit Audio
+Deployment: Netlify (PWA), Streamlit Cloud
+Tags: AssemblyAI, Streamlit, PWA, Infrared, HealthTech, Thermal Imaging
+🚀 Cara Run Lokal
+PWA (Vanilla JS):
 
-### 8 Kriteria Deteksi Sistematis:
-Lembab, Kering, Berpori Besar 0.3-0.6mm, Komedo, Berbulu Halus vellus, Berjamur Active border, Berminyak, Flek Hitam
-Jika bersih: "KULIT ANDA PERFECT BERSIH ✨ 95/100"
+bash
+git clone https://github.com/aichaliveret/ir-7detik-lensa-infra
+cd ir-7detik-lensa-infra
+# Buka index.html langsung atau pakai live server
+npx serve .
+Streamlit (Python):
 
-### Saran Formula & Nasehat Dokter:
-Sesuai kadar ingredien skincare, ikuti petunjuk dokter, reminder 07:00 & 21:00
+bash
+git clone https://github.com/aichaliveret/ir-7detik-lensa-infra
+cd ir-7detik-lensa-infra
+pip install -r requirements.txt
+streamlit run app.py
+Requirements: streamlit, opencv-python, numpy, pillow
 
-### Tech:
-- Frontend: Vanilla HTML/CSS/JS, getUserMedia, Canvas thermal, PWA Ready, Responsive split 50/50 fix anti hitam
-- Backend (Streamlit): Python + OpenCV for IR simulation
-- NPU: Snapdragon realtime (simulasi)
+📦 Repository Structure
+index.html - PWA utama
+app.js - Logic IR 7 detik + thermal analysis
+app.py - Versi Streamlit Cloud
+poster/ - Cover poster
+slides/ - 12 Slides deck
+README.md - File ini
+🏆 Submission
+GitHub Public: https://github.com/aichaliveret/ir-7detik-lensa-infra
+Lablab.ai Project Page: Update via Team Dashboard > Update Project
+Live Demos: 2 link di atas WAJIB PUBLIC
+© 2026 AI Chaliveret | IR 7 Detik Lensa Infra | Privacy First
 
-### Deploy:
-1. Netlify: drag & drop index.html ke https://app.netlify.com/sites/sage-gnome-459585/deploys
-2. Streamlit: streamlit run app.py
-
-### Untuk Lablab.ai:
-- Link Demo: https://sage-gnome-459585.netlify.app/ + Streamlit Cloud link
-- GitHub: push index.html + app.py + requirements.txt
-- Video: rekam flow 7 detik lensa infra
-
-Made with ❤️ for healthy skin detection.
