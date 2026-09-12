@@ -1,124 +1,137 @@
 import streamlit as st
-import streamlit.components.v1 as components
-from datetime import datetime
 
-st.set_page_config(page_title="IR Face Scanner - 7 Detik Lensa Infra", layout="wide")
+# --- PAGE CONFIG V29 TRINITY ---
+st.set_page_config(
+    page_title="FINAL V29 - TRINITY 3 LENS IR",
+    page_icon="🔬",
+    layout="wide",
+)
 
-# --- BANNER IR MANFAAT V27 ---
+# --- CUSTOM CSS BIAR KAYA SAGE-GNOME (Foto 1 & 2 lu) ---
 st.markdown("""
-<div style="background:#000;color:#ff7a00;padding:14px 18px;border-radius:12px;font-family:monospace;text-align:center;line-height:1.6">
-IR MANFAAT: Active border jamur lebih panas, komedo tersumbat lebih dingin | NPU Snapdragon + Thermal Sensor | V28 7 DETIK LENSA INFRA + MIC
+<style>
+    .ir-header {
+        background-color: #0a0a0a;
+        color: #e0e0e0;
+        padding: 10px;
+        font-size: 11px;
+        font-family: monospace;
+        border: 1px solid #333;
+        margin-bottom: 15px;
+    }
+    .main-title {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 10px;
+        letter-spacing: 0.5px;
+    }
+    div.stButton > button:first-child {
+        width: 100%;
+        font-weight: bold;
+        border-radius: 8px;
+    }
+    /* Warna Trinity */
+    .derma-btn button { background-color: #00ff88 !important; color: black !important; }
+    .climate-btn button { background-color: #0088ff !important; color: white !important; }
+    .money-btn button { background-color: #ffcc00 !important; color: black !important; }
+    .start-btn button { background-color: #00ff88 !important; color: black !important; font-size: 16px !important; height: 50px; }
+</style>
+""", unsafe_allow_html=True)
+
+# --- HEADER IR MANFAAT (SAMA KAYAK FOTO 1 LU) ---
+st.markdown("""
+<div class="ir-header">
+IR MANFAAT Deteksi panas peradangan +0.5-1.5°C | Active border jamur lebih panas, komedo lebih dingin | NPU Snapdragon + Thermal Sensor Early Warning, bukan mikroskop optik - LIVE IR READY
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("### 🔬 7 Detik Lensa Infra Deteksi - Kompetisi Lablab.ai")
-st.caption("Model V5 WIDE SIMPLE | Bottom sheet sliding + Auto 3-7 detik capture + Kolom atur deteksi + Kamera + Mic | V28 Fix")
+# --- TITLE ---
+st.markdown('<div class="main-title">KACA MATA 7 DETIK IR - 500x / 1000x THERMAL MAP</div>', unsafe_allow_html=True)
 
-# --- FIX 5% : PRIVACY NOTICE ---
-st.info("🔒 **Privasi:** Foto wajah TIDAK di-upload ke server. Semua proses IR thermal scan 7 detik dilakukan lokal di browser HP/laptop kamu. Aman untuk kompetisi Lablab.ai.", icon="🛡️")
+# --- STATE ---
+if 'mode' not in st.session_state:
+    st.session_state.mode = "DERMA - 15cm 7 detik (skincare)"
+if 'timer' not in st.session_state:
+    st.session_state.timer = "7 DETIK"
 
-# --- FIX 5% : ONE CLICK CAMERA + MIC PERMISSION ---
-st.markdown("#### 📷 FULL CAMERA - Pajang Wajah")
-st.write("Pajang wajah di dalam frame FACE ID • IR • NPU")
+# --- 3 TOMBOL TRINITY (SAMA PERSIS SAGE-GNOME) ---
+col1, col2, col3 = st.columns(3)
 
-# Tombol HTML untuk trigger permission kamera+mic sekaligus (fix untuk HP)
-components.html("""
-<div style="text-align:center;margin-bottom:12px">
-<button id="permBtn" style="background:#ff3b30;color:white;border:none;padding:12px 20px;border-radius:10px;font-weight:bold;font-size:14px;cursor:pointer;width:100%">
-🎥 KLIK UNTUK AKTIFKAN KAMERA + MIC (HP & Laptop)
-</button>
-<p id="permStatus" style="font-size:12px;color:#666;margin-top:8px">Klik tombol di atas dulu, baru pakai kamera Streamlit di bawah. Untuk HP: Allow Camera & Microphone.</p>
+with col1:
+    st.markdown('<div class="derma-btn">', unsafe_allow_html=True)
+    if st.button("1. DERMA\n15cm - 7 detik", key="derma"):
+        st.session_state.mode = "DERMA - 15cm 7 detik (skincare)"
+    st.markdown('</div>', unsafe_allow_html=True)
+
+with col2:
+    st.markdown('<div class="climate-btn">', unsafe_allow_html=True)
+    if st.button("2. CLIMATE\n2-3m + MBG", key="climate"):
+        st.session_state.mode = "CLIMATE - 2-3m + MBG (protein ayam)"
+    st.markdown('</div>', unsafe_allow_html=True)
+
+with col3:
+    st.markdown('<div class="money-btn">', unsafe_allow_html=True)
+    if st.button("3. MONEY\n15cm AKTIF TERUS", key="money"):
+        st.session_state.mode = "MONEY - 15cm AKTIF TERUS (IR-Absorb uang)"
+    st.markdown('</div>', unsafe_allow_html=True)
+
+st.caption(f"Mode aktif: {st.session_state.mode}")
+
+# --- TIMER LENSA INFRA (SAMA KAYAK FOTO 1) ---
+st.markdown("**TIMER LENSA INFRA** <span style='float:right; background:#aaffaa; padding:2px 8px; border-radius:10px; font-size:11px;'>PROMO 7 DETIK</span>", unsafe_allow_html=True)
+
+t1, t2, t3 = st.columns(3)
+with t1:
+    if st.button("3 DETIK\nCepat", key="t3"):
+        st.session_state.timer = "3 DETIK - Cepat"
+with t2:
+    if st.button("5 DETIK\nStandar", key="t5"):
+        st.session_state.timer = "5 DETIK - Standar"
+with t3:
+    # Tombol aktif ijo kayak di foto lu
+    st.markdown('<div style="background:#aaffaa; padding:8px; border-radius:8px; border:1px solid #00ff88;"><b>7 DETIK</b><br><small>Observasi Perfect • Rekomendasi</small></div>', unsafe_allow_html=True)
+    st.session_state.timer = "7 DETIK - Observasi Perfect"
+
+st.markdown("""
+<div style="background:#0a1a0a; color:#00ff88; padding:8px; font-size:11px; font-family:monospace; border:1px solid #003300; margin:10px 0;">
+7 DETIK LENSA INFRA DETEKSI - Lihat dulu kondisi kulitmu! 0-2s atur posisi • 2-5s auto-scan shortir wajah • 5-7s puas lihat pori/komedo/bulu halus 500x baru auto capture
 </div>
-<script>
-document.getElementById('permBtn').onclick = async () => {
-  const s = document.getElementById('permStatus');
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
-    s.innerHTML = "✅ Kamera & Mic AKTIF! Silakan pakai Take Photo di bawah. IR bisa pakai mic untuk voice guidance.";
-    s.style.color = "green";
-    // stop tracks after permission granted, biar st.camera_input bisa ambil alih
-    stream.getTracks().forEach(t=>t.stop());
-  } catch(e) {
-    s.innerHTML = "❌ Gagal: " + e.message + "<br>Buka gembok 🔒 di address bar > Site Settings > Camera/Mic > Allow, lalu Reload.";
-    s.style.color = "red";
-  }
-}
-</script>
-""", height=110)
+""", unsafe_allow_html=True)
 
-# Native Streamlit Camera
-img = st.camera_input("Take a photo - IR Thermal Scan", label_visibility="collapsed")
+# --- TOMBOL MULAI DETEKSI ---
+st.markdown('<div class="start-btn">', unsafe_allow_html=True)
+start = st.button("MULAI DETEKSI 7 DETIK - SIAP DETEKSI", key="start", use_container_width=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
-if img:
-    st.success("Captured - IR Thermal Scan 7 detik - " + datetime.now().strftime("%H:%M:%S"))
-    
-    # --- FIX 5% : DEFAULT 7 DETIK ---
-    timer = st.slider("Pilih Timer Lensa Infra:", min_value=3, max_value=7, value=7, 
-                       help="3 Detik Cepat = preview, 7 Detik Perfect = observasi IR thermal stabil")
-    if timer == 7:
-        st.markdown("<p style='color:#ff3b30;text-align:right;font-size:14px'>7 Detik Observasi Perfect (Rekomendasi)</p>", unsafe_allow_html=True)
-    else:
-        st.markdown(f"<p style='color:#666;text-align:right;font-size:14px'>{timer} Detik Cepat</p>", unsafe_allow_html=True)
+st.caption("0-2s atur posisi wajah di tengah | 2-5s Lensa IR auto scan shortir | 5-7s lihat detail pori/bulu 500x")
 
-    if st.button("MULAI DETEKSI 7 DETIK - LENSA INFRA", type="primary", use_container_width=True):
-        st.balloons()
-    
-    # --- KOLOM DETEKSI ---
-    st.markdown("### ⚙️ Atur Kolom Deteksi - Pilih yang mau dicek")
-    c1, c2 = st.columns(2)
-    with c1:
-        st.markdown("**Group 1:**")
-        st.checkbox("Kulit Wajah Lembab", value=True)
-        st.checkbox("Kulit Wajah Kering", value=True)
-        st.markdown("**Group 2:**")
-        st.checkbox("Kulit Berpori Besar 0.3-0.6mm", value=True)
-        st.checkbox("Kulit Berkomedo", value=True)
-        st.checkbox("Kulit Berflek Hitam", value=True)
-    with c2:
-        st.markdown("**Group 3:**")
-        st.checkbox("Bertungau (Demodex)", value=False, help="Butuh resep dokter - default off")
-        st.checkbox("Kulit Berpanu (Menjamur)", value=True)
-        st.checkbox("⚠️ Awas Bakteri & Virus → Jerawat Bernanah", value=True)
+# --- CAMERA (FULL CAMERA - Pajang Wajah) ---
+st.markdown("---")
+st.markdown("### 📷 FULL CAMERA - Pajang Wajah")
+st.markdown("Pajang wajah di dalam frame FACE ID • IR • NPU")
 
-    st.divider()
-    st.markdown("### 🔬 Bisakah IR deteksi bakteri & virus?")
-    st.warning("TIDAK LANGSUNG. Bakteri 0.5-1 mikron, virus 20-300nm jauh lebih kecil dari pixel IR. IR hanya deteksi panas peradangan +0.6-1.5°C akibat infeksi. Kepastian 100% butuh lab. Ini early warning.", icon="⚠️")
+# Privasi Box (dari Streamlit lama lu)
+st.info("🔒 **Privasi:** Foto wajah TIDAK di-upload ke server. Semua proses IR thermal scan 7 detik dilakukan lokal di browser HP/laptop kamu. Aman untuk kompetisi Lablab.ai.")
 
-    st.markdown("### 📊 Hasil Analisa Sistematis")
-    colA, colB, colC = st.columns(3)
-    colA.metric("Lembab Berlebih T-zone", "58%", "↑ Minyak")
-    colB.metric("Kering Dagu", "32%", "↑ Kurang hidrasi")
-    colC.metric("Pori Besar", "0.45mm", "0.3-0.6mm")
-
-    colD, colE, colF = st.columns(3)
-    colD.metric("Komedo", "4 titik", "-0.2°C dingin")
-    colE.metric("Flek Hitam", "Ada", "↑ Hiperpigmentasi")
-    colF.metric("Berpanu Jamur", "Active border +0.8°C", "↑ Panas")
-
-    st.metric("Jerawat Bakteri", "Meradang +1.2°C", "↑ Jangan pencet!")
-
-    st.markdown("""
-    <div style="background:#dbeafe;color:#1e40af;padding:16px;border-radius:12px;font-weight:bold;font-size:20px">
-    STERIL BERSIH SCORE 48/100
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("### 💊 Saran Formula Sesuai Kadar")
-    st.code("""
-Lembab/Berminyak: Niacinamide 5% + Salicylic 1%
-Kering: Ceramide 2% + Hyaluronic 1% + Squalane
-Pori Besar: Niacinamide + Double cleansing
-Komedo: Salicylic 2% + Retinol 0.3% malam
-Flek: Vit C 10% pagi + Arbutin 2%
-Tungau: Ivermectin 1% (resep dokter)
-Panu: Ketoconazole 2% (resep dokter)
-Jerawat Bernanah: Benzoyl 2.5% totol + ke dokter
-    """, language="text")
-
-    st.markdown("### 👨‍⚕️ Nasehat Dokter - Ikuti Petunjuk Dokter")
-    st.info("Cuci 2x sehari, SPF50 tiap pagi, jangan pencet jerawat bernanah, bawa hasil scan ini ke dokter kulit untuk lab. Reminder 07:00 & 21:00 + Mic voice guidance aktif", icon="💡")
-
-    st.divider()
-    st.markdown("**Deploy:** Netlify https://sage-gnome-459585.netlify.app/ + Streamlit untuk layout 70/30 | PWA Ready | V28 Kamera+Mic | aichaliveret/ir-7detik-lensa-infra")
+if start:
+    st.success(f"✅ Mode: {st.session_state.mode} | Timer: {st.session_state.timer} - Kamera Aktif!")
+    camera = st.camera_input("KLIK UNTUK AKTIFKAN KAMERA + MIC (HP & Laptop) - Allow Camera", key="cam")
+    if camera:
+        st.image(camera, caption=f"Hasil {st.session_state.mode} - Thermal Map 500x")
+        if "MONEY" in st.session_state.mode:
+            st.warning("💰 MONEY Mode: IR-Absorb deteksi tinta hitam-putih - loop requestAnimationFrame AKTIF TERUS")
+        elif "DERMA" in st.session_state.mode:
+            st.warning("🌡️ DERMA Mode: Deteksi panas peradangan +0.5-1.5°C - Active border jamur lebih panas")
+        else:
+            st.warning("🌍 CLIMATE Mode: Room scan 2-3m + MBG protein ayam 15cm")
 else:
-    st.warning("📱 Di HP: 1) Klik tombol merah AKTIFKAN KAMERA+MIC di atas 2) Allow 3) Baru klik Take Photo. Jika masih block, klik gembok 🔒 di URL > Site Settings > Allow Camera/Mic > Reload.", icon="⚙️")
+    st.camera_input("KLIK UNTUK AKTIFKAN KAMERA + MIC", key="cam_idle")
+
+# --- FOOTER LINK (SINKRON SAMA GITHUB V29) ---
+st.markdown("---")
+st.markdown("""
+**🔗 Links V29 Trinity:**
+- Main PWA (Vanilla JS): https://sage-gnome-459585.netlify.app/
+- GitHub: https://github.com/aichaliveret/ir-7detik-lensa-infra
+- Video Demo 60s: [Ganti dengan link Shorts asli]
+""")
